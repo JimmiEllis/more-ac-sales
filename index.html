@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jimmi Ellis — Video & Social Media Marketing Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --air-orange:    #E07A24;
+    --air-orange-dk: #C46818;
+    --air-orange-lt: #FEF3E8;
+    --air-navy:      #1A3A5C;
+    --air-navy-lt:   #EAF0F8;
+    --air-sky:       #2196C4;
+    --white:         #FFFFFF;
+    --off-white:     #F7F8FA;
+    --border:        #E2E6EA;
+    --text-dark:     #1A1F2E;
+    --text-mid:      #4A5568;
+    --text-muted:    #8A97A8;
+    --font-head:     'Poppins', sans-serif;
+    --font-body:     'Inter', sans-serif;
+    --radius:        10px;
+    --radius-lg:     16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--air-navy);
+    padding: 11px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .topbar-left {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.01em;
+  }
+
+  .topbar-right {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .topbar-right a {
+    color: var(--air-orange);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--air-navy);
+    padding: 60px 5% 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 40px;
+    background: var(--white);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .hero-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(224,122,36,0.15);
+    border: 1px solid rgba(224,122,36,0.35);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--air-orange);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  .hero-pill::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--air-orange);
+    flex-shrink: 0;
+  }
+
+  .hero-title {
+    font-family: var(--font-head);
+    font-size: clamp(28px, 4.5vw, 50px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+    max-width: 640px;
+  }
+
+  .hero-title span { color: var(--air-orange); }
+
+  /* ── ABOUT STRIP (personal intro) ── */
+  .about-strip {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 5%;
+  }
+
+  .about-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .about-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--air-navy);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    border: 3px solid var(--air-orange);
+    overflow: hidden;
+  }
+
+  .about-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+  }
+
+  .about-text { flex: 1; min-width: 240px; }
+
+  .about-name {
+    font-family: var(--font-head);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--air-navy);
+    margin-bottom: 4px;
+  }
+
+  .about-role {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--air-orange);
+    margin-bottom: 10px;
+  }
+
+  .about-bio {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 620px;
+  }
+
+  /* ── PAGE BODY ── */
+  .page-wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-block {
+    padding-top: 56px;
+    margin-bottom: 26px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--air-orange);
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--air-navy);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    max-width: 580px;
+    line-height: 1.7;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 8px 0 0;
+  }
+
+  /* ── VIDEO GRIDS ── */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 8px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 8px;
+  }
+
+  /* ── VIDEO CARD ── */
+  .vcard {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .vcard:hover {
+    box-shadow: 0 8px 28px rgba(26,58,92,0.10);
+    transform: translateY(-2px);
+  }
+
+  .vcard-thumb {
+    max-width: 560px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    padding-top: min(56.25%, 315px);
+    background: var(--off-white);
+  }
+
+  .vcard-thumb iframe,
+  .vcard-thumb video {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  .vcard-thumb-vertical {
+    position: relative;
+    width: 100%;
+    padding-top: min(177.77%, 390px);
+    max-width: 220px;
+    margin: 0 auto;
+    background: var(--off-white);
+  }
+
+  .vcard-thumb-vertical iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--air-navy-lt);
+    gap: 10px;
+  }
+
+  .play-ring {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--air-orange);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .play-ring svg { fill: var(--air-orange); width: 18px; height: 18px; margin-left: 2px; }
+
+  .ph-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .vcard-body { padding: 14px 16px 18px; }
+
+  .vtag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 7px;
+  }
+
+  .vtag-airspool { background: var(--air-orange-lt); color: var(--air-orange-dk); }
+  .vtag-client   { background: var(--air-navy-lt);   color: var(--air-navy); }
+  .vtag-jimmi    { background: #EEF5FF; color: var(--air-sky); }
+
+  .vtitle {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--air-navy);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .vdesc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* ── WHAT I BRING callout block ── */
+  .bring-block {
+    background: var(--air-navy-lt);
+    border: 1px solid #C8DDEF;
+    border-radius: var(--radius-lg);
+    padding: 28px 28px 24px;
+    margin: 48px 0 0;
+  }
+
+  .bring-title {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--air-navy);
+    margin-bottom: 16px;
+  }
+
+  .bring-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    list-style: none;
+  }
+
+  .bring-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  .bring-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--air-orange);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  /* ── TECH STRIP ── */
+  .tech-strip {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 5%;
+    margin-top: 56px;
+  }
+
+  .tech-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tech-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-right: 4px;
+    white-space: nowrap;
+  }
+
+  .chip {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 50px;
+    background: var(--white);
+    color: var(--text-mid);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--air-navy);
+    padding: 64px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 0; right: 0;
+    height: 40px;
+    background: var(--white);
+    clip-path: ellipse(55% 100% at 50% 0%);
+  }
+
+  .cta-inner {
+    max-width: 540px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .cta-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--air-orange);
+    margin-bottom: 12px;
+  }
+
+  .cta-title {
+    font-family: var(--font-head);
+    font-size: clamp(24px, 3.5vw, 38px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 28px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .btn-orange {
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 13px 28px;
+    background: var(--air-orange);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .btn-orange:hover { background: var(--air-orange-dk); }
+
+  .btn-white {
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 13px 28px;
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+
+  .btn-white:hover { border-color: rgba(255,255,255,0.7); }
+
+  .cta-contact {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .cta-contact a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+  footer {
+    background: #111827;
+    padding: 18px 5%;
+    text-align: center;
+    font-size: 11px;
+    color: #4A5568;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 640px) {
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    .about-inner { gap: 18px; }
+    .bring-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="topbar-left">Video &amp; Social Media Marketing Demo</span>
+  <span class="topbar-right">Contact Jimmi &nbsp;·&nbsp; <a href="tel:7028177795">702-817-7795</a></span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-pill">Local Las Vegas Celebrity &amp; Content Creator</div>
+    <h1 class="hero-title">Your Brand. My Audience.<br><span>More People Buy.</span></h1>
+  </div>
+</section>
+
+<!-- PERSONAL INTRO STRIP -->
+<div class="about-strip">
+  <div class="about-inner">
+    <div class="about-avatar"><img src="https://jimmiellis.github.io/Airspool-Demos/Jimmi_Ellis.png" alt="Jimmi Ellis"></div>
+    <div class="about-text">
+      <p class="about-name">Jimmi Ellis</p>
+      <p class="about-role">Las Vegas Entertainer &amp; Content Creator</p>
+      <p class="about-bio">I'm a Las Vegas-based entertainer, bandleader, and content creator with a local audience that trusts my recommendations. When I talk about something I believe in, people listen — and they act. A couple of posts on my Facebook page alone can realistically drive 3 to 5 local installs or purchases. I'm looking for the right partner to make that happen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BODY -->
+<div class="page-wrap">
+
+  <!-- ══ UGC DEMO ══ -->
+  <div class="section-block">
+    <p class="section-eyebrow">Sample UGC Video Demos</p>
+    <h2 class="section-title">See What This Looks Like For Your Brand</h2>
+    <p class="section-desc">This is the kind of content I produce — authentic, scroll-stopping, and built to turn viewers into buyers.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 520px; margin: 0 auto 8px;">
+
+    <div class="vcard">
+      <div class="vcard-body" style="padding-bottom: 10px;">
+        <span class="vtag vtag-airspool">UGC Demo</span>
+        <p class="vtitle">Mini Split AC — Demo 1</p>
+      </div>
+      <div class="vcard-thumb-vertical">
+        <iframe src="https://www.youtube.com/embed/pPRSJZbpB2U?rel=0&modestbranding=1" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+
+    <div class="vcard">
+      <div class="vcard-body" style="padding-bottom: 10px;">
+        <span class="vtag vtag-airspool">UGC Demo</span>
+        <p class="vtitle">Mini Split AC — Demo 2</p>
+      </div>
+      <div class="vcard-thumb-vertical">
+        <iframe src="https://www.youtube.com/embed/xRocCNbWa7A?rel=0&modestbranding=1" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+
+  </div>
+  <p style="font-size: 11px; color: var(--text-muted); font-style: italic; text-align: center; max-width: 520px; margin: 6px auto 0;">"ArcticFlow" is a fictional sample brand used for demonstration purposes only. Your brand, your product, your story.</p>
+
+  <!-- WHAT I BRING BLOCK -->
+  <div class="bring-block">
+    <p class="bring-title">What a real partnership looks like for your brand</p>
+    <ul class="bring-list">
+      <li><span class="bring-dot"></span>A trusted local Las Vegas voice — my audience acts on my recommendations</li>
+      <li><span class="bring-dot"></span>2 to 5 realistic local installs or unit sales from a single Facebook post</li>
+      <li><span class="bring-dot"></span>A real customer story — I get the unit, I document it, I share it authentically</li>
+      <li><span class="bring-dot"></span>Consistent social content on Facebook, Instagram &amp; YouTube — not random posts</li>
+      <li><span class="bring-dot"></span>Short-form video built to stop the scroll and drive buyers to your door</li>
+      <li><span class="bring-dot"></span>Low friction — I handle the content, you focus on what you do best</li>
+    </ul>
+  </div>
+
+
+  <!-- ══ IMAGE CAROUSELS ══ -->
+  <div class="section-block">
+    <p class="section-eyebrow">Social Media Content</p>
+    <h2 class="section-title">Instagram &amp; Facebook Carousel Posts</h2>
+    <p class="section-desc">Sample carousel content — the kind of posts that educate your audience, build trust, and drive people to buy. Ready to be customized for your brand.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 8px;">
+
+    <!-- CAROUSEL 1 — Mini Split Benefits (4 slides) -->
+    <div class="vcard">
+      <div class="vcard-body" style="padding-bottom: 10px;">
+        <span class="vtag vtag-airspool">Instagram · Facebook</span>
+        <p class="vtitle">Product Benefits Carousel</p>
+        <p class="vdesc" style="margin-top:4px;">4-slide carousel — product education and key selling points. Customized for your brand.</p>
+      </div>
+      <div style="overflow-x: auto; display: flex; gap: 8px; padding: 0 16px 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+        <img src="https://jimmiellis.github.io/more-ac-sales/mini-split-D1.png" style="height: 320px; width: auto; border-radius: 8px; flex-shrink: 0; scroll-snap-align: start; object-fit: cover;" alt="Mini Split Benefits Slide 1">
+        <img src="https://jimmiellis.github.io/more-ac-sales/mini-split-D3.png" style="height: 320px; width: auto; border-radius: 8px; flex-shrink: 0; scroll-snap-align: start; object-fit: cover;" alt="Mini Split Benefits Slide 2">
+        <img src="https://jimmiellis.github.io/more-ac-sales/mini-split-D4.png" style="height: 320px; width: auto; border-radius: 8px; flex-shrink: 0; scroll-snap-align: start; object-fit: cover;" alt="Mini Split Benefits Slide 3">
+        <img src="https://jimmiellis.github.io/more-ac-sales/mini-split-D6.png" style="height: 320px; width: auto; border-radius: 8px; flex-shrink: 0; scroll-snap-align: start; object-fit: cover;" alt="Mini Split Benefits Slide 4">
+      </div>
+      <p style="font-size: 11px; color: var(--text-muted); text-align: center; padding-bottom: 12px;">← swipe to view all slides →</p>
+    </div>
+
+    <!-- CAROUSEL 2 — Mini Split Features (remaining 3 slides) -->
+    <div class="vcard">
+      <div class="vcard-body" style="padding-bottom: 10px;">
+        <span class="vtag vtag-airspool">Instagram · Facebook</span>
+        <p class="vtitle">Mini Split Features Carousel</p>
+        <p class="vdesc" style="margin-top:4px;">3-slide carousel — features, comfort zones, and upgrade messaging. Swappable for your brand.</p>
+      </div>
+      <div style="overflow-x: auto; display: flex; gap: 8px; padding: 0 16px 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+        <img src="https://jimmiellis.github.io/more-ac-sales/mini-split-D2.png" style="height: 320px; width: auto; border-radius: 8px; flex-shrink: 0; scroll-snap-align: start; object-fit: cover;" alt="Mini Split Features Slide 1">
+        <img src="https://jimmiellis.github.io/more-ac-sales/mini-split-D5.png" style="height: 320px; width: auto; border-radius: 8px; flex-shrink: 0; scroll-snap-align: start; object-fit: cover;" alt="Mini Split Features Slide 2">
+        <img src="https://jimmiellis.github.io/more-ac-sales/mini-split-D7.png" style="height: 320px; width: auto; border-radius: 8px; flex-shrink: 0; scroll-snap-align: start; object-fit: cover;" alt="Mini Split Features Slide 3">
+      </div>
+      <p style="font-size: 11px; color: var(--text-muted); text-align: center; padding-bottom: 12px;">← swipe to view all slides →</p>
+    </div>
+
+  </div>
+
+  <hr class="divider" style="margin-top: 16px;">
+
+
+  <!-- ══ PROPOSAL CTA GRAPHIC ══ -->
+  <div style="max-width: 720px; margin: 40px auto 8px; text-align: center;">
+    <a href="https://jimmiellis.github.io/more-ac-sales/Jimmi_Ellis_Proposal.pdf" target="_blank" style="display: inline-block; border: 6px solid var(--air-orange); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 28px rgba(224,122,36,0.25); transition: transform 0.2s;">
+      <img src="https://jimmiellis.github.io/more-ac-sales/proposal-graphic.png" alt="Click to download full proposal" style="display: block; width: 100%; height: auto;">
+    </a>
+    <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">Click the graphic above to download the full proposal (PDF)</p>
+  </div>
+
+  <hr class="divider" style="margin-top: 24px;">
+
+  <!-- ══ JIMMI ELLIS ENTERTAINMENT ══ -->
+  <div class="section-block">
+    <p class="section-eyebrow">My own brand — the proof it works</p>
+    <h2 class="section-title">Jimmi Ellis Entertainment</h2>
+    <p class="section-desc">Everything I'd bring to your brand is already running on my own entertainment business. This isn't theory — it's what I do every day.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 700px; margin: 0 auto 8px;">
+
+    <div class="vcard">
+      <div class="vcard-thumb-vertical">
+        <iframe src="https://www.youtube.com/embed/B5gmDdaA8F4?rel=0&modestbranding=1" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+
+    <div class="vcard">
+      <div class="vcard-thumb-vertical">
+        <iframe src="https://www.youtube.com/embed/M9X8ZW4kbtU?rel=0&modestbranding=1" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+
+    <div class="vcard">
+      <div class="vcard-thumb-vertical">
+        <iframe src="https://www.youtube.com/embed/7lsxR3P_yPs?rel=0&modestbranding=1" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider" style="margin-top: 40px;">
+
+  <!-- ══ CLIENT WORK ══ -->
+  <div class="section-block">
+    <p class="section-eyebrow">Previous work</p>
+    <h2 class="section-title">Local Business Promos</h2>
+    <p class="section-desc">Real content produced for real local Las Vegas businesses — proof that this approach works across industries.</p>
+  </div>
+
+  <div style="max-width: 720px; margin: 0 auto 20px;">
+    <div class="vcard">
+      <div class="vcard-body" style="padding-bottom: 10px;">
+        <span class="vtag vtag-client">Client Work</span>
+        <p class="vtitle">Hideaway Bar &amp; Grill</p>
+      </div>
+      <div class="vcard-thumb">
+        <iframe src="https://www.youtube.com/embed/XtmkIcLWETI?rel=0&modestbranding=1" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 720px; margin: 0 auto 8px;">
+    <div class="vcard">
+      <div class="vcard-body" style="padding-bottom: 10px;">
+        <span class="vtag vtag-client">Client Work</span>
+        <p class="vtitle">Professional Institute Of Technology</p>
+      </div>
+      <div class="vcard-thumb">
+        <iframe src="https://www.youtube.com/embed/cBfCclxpgHM?rel=0&modestbranding=1" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px; margin-bottom: 56px;">
+    More at <a href="https://JimmiEllis.com" target="_blank" style="color: var(--air-orange); text-decoration: none; font-weight: 500;">JimmiEllis.com</a>
+  </p>
+
+</div><!-- /page-wrap -->
+
+<!-- TECH STRIP -->
+<div class="tech-strip">
+  <div class="tech-inner">
+    <span class="tech-label">Production tools:</span>
+    <span class="chip">Video Production</span>
+    <span class="chip">Voice &amp; Narration</span>
+    <span class="chip">Professional Editing</span>
+    <span class="chip">Facebook</span>
+    <span class="chip">Instagram</span>
+    <span class="chip">YouTube</span>
+    <span class="chip">Social Strategy</span>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <p class="cta-eyebrow">Let's talk</p>
+    <h2 class="cta-title">Let's Put Your Brand<br><span style="color:var(--air-orange);">In Front of More Buyers.</span></h2>
+    <p class="cta-sub">A real local voice. A real audience. Real content that drives real sales. Let's find a way to make this work for both of us.</p>
+    <div class="cta-buttons">
+      <a href="tel:7028177795" class="btn-orange">Call or Text Jimmi — 702-817-7795</a>
+      <a href="https://JimmiEllis.com" target="_blank" class="btn-white">JimmiEllis.com</a>
+    </div>
+    <p class="cta-contact">Entertainment Hotline: <a href="tel:7029973424">702-997-3424</a></p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Jimmi Ellis Entertainment &nbsp;·&nbsp; Las Vegas, NV &nbsp;·&nbsp; JimmiEllis.com
+</footer>
+
+</body>
+</html>
